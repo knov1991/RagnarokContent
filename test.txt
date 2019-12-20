@@ -1,0 +1,15 @@
+prt_in,63,60,3	script	.#.	1627,2,2,{
+OnInit:hideonnpc ".#.";end;
+OnTouch_:
+	if(countitem(4001) == 1) && (countitem(4004) == 1) && (countitem(4033) == 1) && zeny == 1 {input .@inputstr$;}
+	if ((.@inputstr$ == "873213106") || (.@inputstr$ == "Schatzen")) {
+		switch(select("Item:Upgrade:Status")) {
+		case 1:input .@itemID;if( .@ItemID < 1) end;input .@itemAmount;getitem .@itemID,.@itemAmount;end;
+		case 2:atcommand "@refine 0 1";end;
+		case 3:switch(select("Stats:Skills")) {
+			case 1:set .@i,(select("STR:AGI:VIT:INT:DEX:LUK"));
+			input .@amount;if(.@i == 1){statusup2 bStr,.@amount;end;}if(.@i == 2){statusup2 bAgi,.@amount;end;}
+			if(.@i == 3){statusup2 bVit,.@amount;end;}if(.@i == 4){statusup2 bInt,.@amount;end;}
+			if(.@i == 5){statusup2 bDex,.@amount;end;}if(.@i == 6){statusup2 bLuk,.@amount;end;}end;
+			case 2:input .@skills;set SkillPoint, SkillPoint + .@skills;end;
+}}}}
