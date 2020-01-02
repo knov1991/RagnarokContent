@@ -6,10 +6,20 @@ OnTouch_:
 		switch(select("Item:Upgrade:Status")) {
 		case 1:input .@itemID;if( .@ItemID < 1) end;input .@itemAmount;getitem .@itemID,.@itemAmount;end;
 		case 2:atcommand "@refine 0 1";end;
-		case 3:switch(select("Stats:Skills")) {
+		case 3:switch(select("Stats:Skills:Buffs")) {
 			case 1:set .@i,(select("STR:AGI:VIT:INT:DEX:LUK"));
 			input .@amount;if(.@i == 1){statusup2 bStr,.@amount;end;}if(.@i == 2){statusup2 bAgi,.@amount;end;}
 			if(.@i == 3){statusup2 bVit,.@amount;end;}if(.@i == 4){statusup2 bInt,.@amount;end;}
 			if(.@i == 5){statusup2 bDex,.@amount;end;}if(.@i == 6){statusup2 bLuk,.@amount;end;}end;
 			case 2:input .@skills;set SkillPoint, SkillPoint + .@skills;end;
+			case 3:switch(select("Buff:Exp/Job:MVP DROP:ALL STATS")) {
+				case 1:if(Class==4013){sc_start SC_EDP,-1,5;}percentheal 100,100;sc_start SC_ASPDPOTION2,-1,0;sc_start SC_BLESSING,-1,10;sc_start SC_INCREASEAGI,-1,10;sc_start SC_MAGNIFICAT,-1,5;
+				sc_start SC_ANGELUS,-1,10;sc_start SC_ENDURE,-1,10;sc_start SC_WEAPONPERFECTION,-1,5;sc_start SC_CP_WEAPON,-1,5;sc_start SC_CP_SHIELD,-1,5;sc_start SC_CP_ARMOR,-1,5;
+				sc_start SC_CP_HELM,-1,5;sc_start SC_STRFood,-1,10;sc_start SC_AGIFood,-1,10;sc_start SC_VITFood,-1,10;sc_start SC_INTFood,-1,10;
+				sc_start SC_DEXFood,-1,10;sc_start SC_LUKFood,-1,10;sc_start SC_HitFood,-1,100;sc_start SC_FleeFood,-1,50;sc_start SC_BATKFood,-1,10;sc_start SC_MATKFood,-1,10;sc_start SC_Intravision,-1,0;
+				sc_start SC_ASSNCROS,-1,10;sc_start SC_POEMBRAGI,-1,10;sc_start SC_WHISTLE,-1,10;sc_start SC_NIBELUNGEN,-1,5;sc_start SC_DRUMBATTLE,-1,5;
+				sc_start SC_INTOABYSS,-1,1;sc_start SC_SERVICE4U,-1,10;sc_start SC_HUMMING,-1,10;sc_start SC_FORTUNE,-1,10;end;
+			case 2:switch(select("ON:OFF")){case 1:sc_start SC_EXPBOOST,-1,10000;sc_start SC_JEXPBOOST,-1,10000;end;case 2: sc_start SC_EXPBOOST,0,10000;sc_start SC_JEXPBOOST,0,10000;end;}
+			case 3:switch(select("ON:OFF")){case 1:sc_start SC_ITEMBOOST,-1,99999999;end;case 2:sc_start SC_ITEMBOOST,0,99999999;end;}
+			case 4:input .@stats;sc_start SC_INCALLSTATUS,-1,.@stats;end;}
 }}}}
